@@ -1,4 +1,4 @@
-_psycache_
+__pycache__
 .vscode
 entorno
 cliente_dao.py
