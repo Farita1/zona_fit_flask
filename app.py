@@ -5,7 +5,7 @@ from forms import ClienteForm
 from models import Cliente
 
 app = Flask(__name__)
-#Configuramos la Base de Datos
+#Configuramos la Base de Datos.
 USER_DB = 'Usuario de tu base de datos'
 PASS_DB = 'Contraseña'
 URL_DB = 'localhost'
