@@ -1,0 +1,7 @@
+_psycache_
+.vscode
+entorno
+cliente_dao.py
+conexion.py
+cursor_del_pool.py
+app_zona_fit.py

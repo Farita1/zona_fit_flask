@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zona Fit (GYM)</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <!-- Mensajes Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="container mt-3">
+      {% set category, message = messages[0] %}
+      <div
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% endif %} {% endwith %}
+
+    <div class="container">
+      <!-- Titulo -->
+      <div class="container py-3">
+        <h1 class="display-5 titulo text-warning">
+          Zona Fit (GYM) <i class="bi bi-award"></i>
+        </h1>
+      </div>
+
+      <!-- Grid Principal -->
+      <div class="container-fluid pb-3">
+        <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr">
+          <!-- Contenedor del formulario -->
+          <div class="border rounded-3 p-2">
+            <h1 class="display-5 titulo text-warning">
+              Agregar Cliente <i class="bi bi-person"></i>
+            </h1>
+            <form method="POST">
+              {{ forma.csrf_token }}
+              <p>
+                {{ forma.nombre.label }} <br />
+                {{ forma.nombre(size=30) }}
+              </p>
+              <p>
+                {{ forma.apellido.label }} <br />
+                {{ forma.apellido(size=30) }}
+              </p>
+              <p>
+                {{ forma.membresia.label }} <br />
+                {{ forma.membresia(size=30) }}
+              </p>
+              <p>{{ forma.enviar() }}</p>
+            </form>
+          </div>
+
+          <!-- Contenedor del listado de clientes -->
+          <div class="border rounded-3 p-2">
+            <table class="table table-striped table-hover">
+              <thead class="table-warning">
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Membresía</th>
+                  <th>Ver</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                  <td>{{ cliente.id }}</td>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  <td>{{ cliente.membresia }}$</td>
+                  <td>
+                    <a href="ver/{{ cliente.id }}">
+                      <button type="button" class="btn btn-outline-success">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="editar/{{ cliente.id }}">
+                      <button type="button" class="btn btn-outline-warning">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="eliminar/{{ cliente.id }}">
+                      <button type="button" class="btn btn-outline-danger">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
