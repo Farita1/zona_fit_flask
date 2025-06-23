@@ -6,10 +6,10 @@ from models import Cliente
 
 app = Flask(__name__)
 #Configuramos la Base de Datos
-USER_DB = 'postgres'
-PASS_DB = '1234'
+USER_DB = 'Usuario de tu base de datos'
+PASS_DB = 'Contraseña'
 URL_DB = 'localhost'
-NAME_DB = 'zona_fit_flask'
+NAME_DB = 'Nombre de la base de datos'
 FULL_URL_DB = f'postgresql://{USER_DB}:{PASS_DB}@{URL_DB}/{NAME_DB}'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = FULL_URL_DB
