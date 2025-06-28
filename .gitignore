@@ -6,4 +6,5 @@ conexion.py
 cursor_del_pool.py
 app_zona_fit.py
 capa_datos.log
-__pycache__
+.gitignore
+
